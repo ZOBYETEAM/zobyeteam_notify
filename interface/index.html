@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZOBYETEAM_NOTIFY</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="wrapper">
+
+        <!-- Normal Notify -->
+        <div class="top-left container">
+            <transition-group name="slide-fade-right">
+                <div v-for="(item, index) in currentTwitterNotify" :key="item.key" class="notify-twitter-container">
+                    <div class="profile">
+                        <img :src="item.profile">
+                    </div>
+                    <div class="info">
+                        <div class="name"> {{item.name}} </div>
+                        <div class="message"> {{item.message}} </div>
+                        <img v-if="item.image" :src="item.image">
+                    </div>
+                </div>
+            </transition-group>
+        </div>
+
+        <div class="center-right container">
+            <transition-group name="slide-fade">
+                <div v-for="(item, index) in currentNotify" :key="item.key" class="notify-container">
+                    <div class="icon">
+                        <i v-if="item.type === 'success'" class="fa-solid fa-check"
+                            :style=" { background: iconColor(item.type) } "></i>
+                        <i v-else-if="item.type === 'warning'" class="fa-solid fa-exclamation"
+                            :style=" { background: iconColor(item.type) } "></i>
+                        <i v-else class="fas fa-info" :style=" { background: iconColor(item.type) } "></i>
+                    </div>
+                    <div class="content">
+                        <div class="header"> {{item.header}} </div>
+                        <div class="main"> {{item.content}} </div>
+                    </div>
+                    <div class="timestamp">
+                        NOW
+                    </div>
+                </div>
+            </transition-group>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="./app.js"></script>
+</body>
+
+</html>
